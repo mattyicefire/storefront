@@ -8,18 +8,16 @@
 </head>
 <body>
     <h1>Edit your Product</h1>
-    <form action="/products/<%=product._id%> " method="POST">
+    <form action="/products/<%=product._id%>?_method=PUT" method="POST">
         <label for="name">Product Name</label>
         <input type="text" name="name" placeholder="Product name" value="<%= product.name %> ">
         <label for="price">Price</label>
         <input type="number" name="price" id="price" placeholder="Product price" value="<%= product.price %>">
         <label for="category">Category</label>
         <select name="category" id="">
-            <option value="">Select a category</option>
-            <option value="meat">meat</option>
-            <option value="vegetable">vegetable</option>
-            <option value="fruit">fruit</option>
-            <option value="dairy">dairy</option>
+            <% for(let category of categories){ %>
+            <option value="<%=category%>" <%= product.category === category ? 'selected': '' %><%category%>></option> 
+            <% } %>
         </select>
         <button type="submit">Edit product</button>
         <a href="/products/<%=product._id%>">Cancel</a>
